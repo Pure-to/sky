@@ -1,25 +1,4 @@
 <title id="title">Good evening</title>
-<script type="text/javascript">
-var d = new Date()
-var time = d.getHours()
-if (time < 24) 
-{ 
-document.getElementById("title").innerHTML="Good evening";
- }
- if (time < 19) 
-{ 
-document.getElementById("title").innerHTML="Good afternoon";
- } 
-if (time < 12)
-{ 
-document.getElementById("title").innerHTML="Good morning";
- } 
-if (time < 5) 
-{
- document.getElementById("title").innerHTML="Stay up late again";
- } 
-
-</script>
 <style>
 * {box-sizing:border-box}
 body {font-family: Verdana,sans-serif;}
@@ -56,6 +35,27 @@ body {font-family: Verdana,sans-serif;}
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
+  /* 数字文本 (1/3 等) */
+.ntext {
+  font-size: 15px;
+  margin-left:9%;
+  position: absolute;
+  top:15%
+}
+  .vertical-menu {
+    width: 400px;
+}
+
+.vertical-menu a {
+  	font-size:18px;
+    color: black;
+    display: block;
+  	padding:5px;
+    text-decoration: none;
+}
+.vertical-menu a.active {
+    color:black;
+}
   /* 标题文本 */
 .text {
   color: #fff2;
@@ -66,22 +66,6 @@ body {font-family: Verdana,sans-serif;}
   margin-left:15%;
   text-align: center;
 }
-/* 标记符号 */
-.dot {
-  cursor:pointer;
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
 /* 淡出动画 */
 .fade {
   -webkit-animation-name: fade;
@@ -104,6 +88,17 @@ body {font-family: Verdana,sans-serif;}
 <div class="slideshow-container">
    <div class="mySlides fade">
     <img src="https://loveyouzoo.files.wordpress.com/2020/01/img_20200120_145722.jpg" style="width:90%;box-shadow: 2px 2px 4px 2px rgba(0,0,0,0.2);border-radius: 20px;margin-left:5%;margin-top:5%">
+     <div class="ntext">
+       <div class="vertical-menu">
+  <a href="#" class="active"><img src="https://loveyouzoo.files.wordpress.com/2020/01/kaoqinchuqin.png" style="vertical-align:middle" width="20px">寄件时间：<b id="titel"></b></a>
+  <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/tijikongjian-xianxing.png" style="vertical-align:middle" width="20px">物品名称： 一见钟情</a>
+  <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/weizhi.png" style="vertical-align:middle" width="20px">始发地：China Asian </a>
+  <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/daohang.png" style="vertical-align:middle" width="20px">已于今天<b id="demo"></b>到达中转站 </a>
+  <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/jijianfasong-xianxing.png" style="vertical-align:middle" width="20px">行程还剩余<b id="jd"></b>%</a>
+  <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/baoguofahuo-xianxing.png" style="vertical-align:middle" width="20px">对方在<b id="time"></b>签收了你的一见钟情</a>
+  <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/xihuan-xianxing.png" style="vertical-align:middle" width="20px">已决定与你长箱厮守~</a>
+</div>
+     </div>
   </div>
   <div class="mySlides fade">
     <img src="https://loveyouzoo.files.wordpress.com/2020/01/img_20200120_141300.jpg" style="width:90%;box-shadow: 2px 2px 4px 2px rgba(0,0,0,0.2);border-radius: 20px;margin-left:5%;margin-top:5%">
@@ -115,9 +110,7 @@ body {font-family: Verdana,sans-serif;}
 </div>
 <br>
 <div style="text-align:center">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
+  <br>
   <div class="text"><marquee scrollamount=4><span id="hitokoto">:D 获取中...</span> ——<span id="from"></span></marquee>
 <script>
   var xhr = new XMLHttpRequest();
@@ -173,6 +166,80 @@ function showSlides() {
     }
     slides[slideIndex-1].style.display = "block";  
     dots[slideIndex-1].className += " active";
-    setTimeout(showSlides,5000);
+    setTimeout(showSlides,6000);
 }
+</script>
+<script type="text/javascript">
+var d = new Date()
+var tim = d.getHours()
+if (tim < 24) 
+{ 
+document.getElementById("title").innerHTML="Good evening";
+document.getElementById("demo").innerHTML="晚上";
+document.getElementById("jd").innerHTML="20";
+ }
+ if (tim < 19) 
+{ 
+document.getElementById("title").innerHTML="Good afternoon";
+document.getElementById("demo").innerHTML="下午";
+document.getElementById("jd").innerHTML="40";
+ } 
+if (tim < 12)
+{ 
+document.getElementById("title").innerHTML="Good morning";
+document.getElementById("demo").innerHTML="早上";
+document.getElementById("jd").innerHTML="60";
+ } 
+if (tim < 5) 
+{
+ document.getElementById("title").innerHTML="Stay up late again";
+ document.getElementById("demo").innerHTML="凌晨";
+ document.getElementById("jd").innerHTML="80";
+ } 
+
+</script>
+<script>
+  function $(id) {
+  return document.getElementById(id);
+}
+ 
+ 
+//设置辅助函数，当所得值小于10的时候在前面补一个0；
+function Timehelp (n) {
+  return n<10?"0"+n:n;
+}
+ 
+ 
+function showTime() {
+	var time = new Date();//得到当前时间
+  	titel = time.getFullYear() + "年";
+  	titel += (time.getMonth()+1)+"月";
+  	titel += time.getDate() +"日";
+  	titel += "   周"+["日","一","二","三","四","五","六"][time.getDay()];
+  	//将当前时间加到html页面中
+  	$("titel").innerHTML = titel;
+  	//得到当前的时分秒；
+  	var center = time.getHours() + "时";
+  	center += time.getMinutes()+"分";
+  	$("time").innerHTML = center;
+  	//设置定时器；
+  	dinshiqi = setTimeout(showTime,1000); 
+}
+ 
+ 
+//当页面加载完毕后执行当前函数；
+window.onload = function() {
+	//调用上面时间函数；
+	showTime();
+	//为按钮添加开始事件；
+	$("start").onclick = function statr(){
+	
+	showTime();
+}
+	//为按钮添加停止事件；
+	$("stop").onclick = function stop(){
+		clearTimeout();
+	}
+}
+
 </script>
