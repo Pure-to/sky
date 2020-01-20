@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title id="title">Good evening</title>
 <style>
 * {box-sizing:border-box}
@@ -24,7 +28,21 @@ body {font-family: Verdana,sans-serif;}
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
+/* 标记符号 */
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
 
+.active, .dot:hover {
+  background-color: #717171;
+}
 /* 定位 "下一张" 按钮靠右 */
 .next {
   right: 0;
@@ -53,7 +71,7 @@ body {font-family: Verdana,sans-serif;}
   	padding:5px;
     text-decoration: none;
 }
-.vertical-menu a.active {
+.vertical-menu a.activet {
     color:black;
 }
   /* 标题文本 */
@@ -90,7 +108,7 @@ body {font-family: Verdana,sans-serif;}
     <img src="https://loveyouzoo.files.wordpress.com/2020/01/img_20200120_145722.jpg" style="width:90%;box-shadow: 2px 2px 4px 2px rgba(0,0,0,0.2);border-radius: 20px;margin-left:5%;margin-top:5%">
      <div class="ntext">
        <div class="vertical-menu">
-  <a href="#" class="active"><img src="https://loveyouzoo.files.wordpress.com/2020/01/kaoqinchuqin.png" style="vertical-align:middle" width="20px">寄件时间：<b id="titel"></b></a>
+  <a href="#" class="	activet"><img src="https://loveyouzoo.files.wordpress.com/2020/01/kaoqinchuqin.png" style="vertical-align:middle" width="20px">寄件时间：<b id="titel"></b></a>
   <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/tijikongjian-xianxing.png" style="vertical-align:middle" width="20px">物品名称： 一见钟情</a>
   <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/weizhi.png" style="vertical-align:middle" width="20px">始发地：China Asian </a>
   <a href="#"><img src="https://loveyouzoo.files.wordpress.com/2020/01/daohang.png" style="vertical-align:middle" width="20px">已于今天<b id="demo"></b>到达中转站 </a>
@@ -110,6 +128,10 @@ body {font-family: Verdana,sans-serif;}
 </div>
 <br>
 <div style="text-align:center">
+<span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</di>
   <br>
   <div class="text"><marquee scrollamount=4><span id="hitokoto">:D 获取中...</span> ——<span id="from"></span></marquee>
 <script>
@@ -243,3 +265,5 @@ window.onload = function() {
 }
 
 </script>
+
+</html>
